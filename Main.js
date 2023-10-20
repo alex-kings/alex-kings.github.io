@@ -1,5 +1,4 @@
 import * as THREE from "https://cdn.skypack.dev/three@0.133.1";
-import {OBJLoader} from "./OBJLoader.js";
 import {OrbitControls} from "./OrbitControls.js";
 
 // Scene, camera and renderer setup
@@ -45,14 +44,23 @@ function generateSpheres(n,r1,r2,dist){
 	return spheres;
 }
 
+// Stars
 const stars = generateSpheres(100, 0.1,0.2, 50);
-stars.forEach((sphere)=>scene.add(sphere));
+stars.forEach((sphere)=>scene.add(sphere)); // Add to scene
 
+console.log(stars[0])
 
 function render(){
-
 	controls.update();
-    requestAnimationFrame(render);
+	// for(let i = 0; i < stars.length; i++) {
+	// 	// Generate a new theta and phi
+	// 	let theta = Math.random()*0.01;
+	// 	let phi = Math.random()*0.01;
+	// 	stars[i].position.x += Math.sin(theta)*Math.cos(phi);
+	// 	stars[i].position.y += Math.sin(theta)*Math.sin(phi);
+	// 	stars[i].position.z += Math.cos(theta);
+	// }
     renderer.render(scene,camera);
+	requestAnimationFrame(render);
 }
 render();
